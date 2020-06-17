@@ -6,9 +6,8 @@
             //#region Variables
             moment.locale('es');
             var Generico = new Globales(),
-                dpDesdeFecha = $("#dpDesdeFecha"),
-                dpHastaFecha = $("#dpHastaFecha"),
-                btnBuscar = $("#btnBuscar"),
+                dpFechaSuscripcion = $("#dpFechaSuscripcion"),
+                btnSuscripcion = $("#btnSuscripcion"),
                 btnCancelar = $("#btnCancelar"),
                 tblSubConsultaPrecioVenta = $("#tblSubConsultaPrecioVenta");
 
@@ -16,28 +15,20 @@
 
             //#region Columnas Grillas
 
-            columnaConsultaPrecioVenta = [
+            columnaConsultaPrecioSuscripcion = [
                 { field: 'id', title: 'Id', width: '90px', hidden: true, blnIdentificador: true },
-                { field: 'FechayHoradeCarga', title: 'Fecha/HoraCarga', width: '100px' },
-                { field: 'IdMaterial', title: 'Cod. Material', width: '100px' },
-                { field: 'NombreMaterial', title: 'Material', width: '100px' },
-                { field: 'PrecioActualdeventa', title: 'Precio Venta Actual', width: '100px' }
+                { field: 'Precio', title: 'PrecioDes', width: '100px' },
+                { field: 'Plan', title: 'PlanDes', width: '100px' },
+                { field: 'Beneficios', title: 'BeneficiosDes', width: '100px' }
  ,
             ]
             //#endregion
 
             //#region controles
-            Generico.CtrFecha(dpDesdeFecha, {
+            Generico.CtrFecha(dpFechaSuscripcion, {
                 blnObligatorio: true,
                 blnEditar: true,
                 strNombre: 'Desde',
-                fnCambiaValor: function () {
-                }
-            });
-            Generico.CtrFecha(dpHastaFecha, {
-                blnObligatorio: true,
-                blnEditar: true,
-                strNombre: 'Hasta',
                 fnCambiaValor: function () {
                 }
             });
@@ -45,7 +36,7 @@
             //#endregion
 
             //#region eventos
-            btnBuscar.click(function () {
+            btnSuscripcion.click(function () {
                 ConsultaPrecioVenta();
             });
             btnCancelar.click(function () {
@@ -64,11 +55,11 @@
                 //var FechaDesde = 1 + "/" + Mes + "/" + Año;
                 var FechaDesde = Dia + "/" + Mes + "/" + Año;
                 var FechaHasta = Dia + "/" + Mes + "/" + Año;;
-                dpDesdeFecha.value(FechaDesde);
+                dpFechaSuscripcion.value(FechaDesde);
                 dpHastaFecha.value(FechaHasta);
             };
 
-        function consultaMateriales() {
+        function consultaSuscripciones() {
             var objBuscar = {};
             objBuscar = {}
             Generico.ServicioEnum.Graficas_Consulta = 255;
@@ -80,13 +71,13 @@
                             var resultado = tipo;
                             if (resultado.Datos != null) {
                                 var vista = JSON.parse(resultado.Datos.Vistas[0].JsonAxis);
-                                cboMaterial.Actualizadata(vista);
+                                cboSuscripcion.Actualizadata(vista);
                             }
                         }
                     });
 
                 },
-                function () { }, '/OrdenarMaterial/ConsultaMaterial')
+                function () { }, '/OrdenarSuscripcion/ConsultaSuscripcion')
 
             };
 
@@ -94,7 +85,7 @@
             //#endregion
 
             //#region Inicia Formulario
-            consultaMateriales();
+            consultaSuscripciones();
             CargaFechaFiltros();
             //#endregion
 
