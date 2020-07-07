@@ -1,5 +1,5 @@
 language: CSharp
 install:
-  -nuget restore IntegracionContinuaMediPlus.sln
+  -nuget restore C:\Users\Mectronics\Desktop\ProyectoIntegracionContinua\.nuget\nuget
 script:
   -msbuild /p:Configuration=Release IntegracionContinuaMediPlus.sln
