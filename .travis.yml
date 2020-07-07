@@ -1,6 +1,4 @@
 language: CSharp
 solution: src/IntegracionContinuaMediPlus.sln
-install:
-  -nuget restore src/IntegracionContinuaMediPlus.sln
 script:
   -msbuild /p:Configuration=Release IntegracionContinuaMediPlus.sln
