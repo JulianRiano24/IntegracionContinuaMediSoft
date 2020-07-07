@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  integracioncontinuamediplus:
+    image: ${DOCKER_REGISTRY-}integracioncontinuamediplus
+    build:
+      context: .\IntegracionContinuaMediPlus
+      dockerfile: Dockerfile
